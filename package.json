@@ -1,0 +1,23 @@
+{
+  "name": "dockercon-swarm-app",
+  "version": "1.0.0",
+  "description": "A tiny app to demonstrate load balancing/monitoring of a swarm cluster",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/developius/dockercon-swarm-app.git"
+  },
+  "author": "Finnian Anderson <get@finnian.io>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/developius/dockercon-swarm-app/issues"
+  },
+  "homepage": "https://github.com/developius/dockercon-swarm-app#readme",
+  "dependencies": {
+    "express": "^4.15.2",
+    "redis": "^2.7.1"
+  }
+}
