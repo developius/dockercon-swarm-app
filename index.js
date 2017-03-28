@@ -32,7 +32,7 @@ function updateStats(cb) {
 }
 
 app.get('/', function (req, res) {
-  res.send('Hello World! Built by <a href=\'https://finnian.io\'>Finnian Anderson</a>')
+  res.send('Hello World! Built by <a href=\'https://finnian.io\'>Finnian Anderson</a><br>Hostname: ' + hostname)
   requests.push(Date.now())
   updateStats()
 })
