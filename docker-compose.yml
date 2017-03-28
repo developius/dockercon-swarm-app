@@ -1,8 +1,29 @@
 version: '3'
 services:
   web:
-    image: 'developius/swarm-app-node'
-    #volumes:
-     #- .:/app
+    image: developius/swarm-app-node:latest
+    ports:
+      - 3000:3000
+    depends_on:
+      - redis
+    networks:
+      - dockercon
+    deploy:
+      mode: replicated
+      replicas: 2
+      placement:
+        constraints: [node.role == worker]
+
   redis:
-    image: "redis:alpine"
+    image: redis:alpine
+    ports:
+      - 6379:6379
+    networks:
+      - dockercon
+    deploy:
+      placement:
+        constraints: [node.role == manager]
+
+networks:
+  dockercon:
+    driver: overlay
