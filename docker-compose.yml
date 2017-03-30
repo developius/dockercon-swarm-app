@@ -1,7 +1,7 @@
 version: '3'
 services:
   web:
-    image: developius/swarm-app-node:0.0.3
+    image: developius/swarm-app-node:0.0.4
     ports:
       - 3000:3000
     depends_on:
