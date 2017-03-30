@@ -14,7 +14,7 @@ const hostname = os.hostname()
 let requests = []
 const interval = 1 // seconds
 
-function updateStats(cb) {
+function updateStats() {
   let cnt = 0
   let d = Date.now()
   // count requests in the last ${interval} seconds
@@ -25,21 +25,16 @@ function updateStats(cb) {
   }
 
   client.publish(hostname, cnt / interval)
-  if (typeof cb !== 'undefined') {
-    cb(cnt / interval)
-  }
 }
 
 app.get('/', function (req, res) {
   requests.push(Date.now())
-  updateStats(function(count) {
-    res.json({
-      message: 'Hello World!',
-      author: 'Finnian Anderson',
-      url: 'finnian.io',
-      hostname: hostname,
-      reqs: count
-    })
+  updateStats()
+  res.json({
+    message: 'Hello World!',
+    author: 'Finnian Anderson',
+    url: 'finnian.io',
+    hostname: hostname
   })
   if (requests.length >= 1000000) requests.shift()
 })
@@ -49,7 +44,5 @@ app.listen(3000, function () {
 })
 
 setInterval(function(){
-  updateStats(function(count) {
-    console.log(hostname + ': ' + count)
-  })
+  updateStats()
 }, 1000)
