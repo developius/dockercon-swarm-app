@@ -32,14 +32,16 @@ function updateStats(cb) {
 }
 
 app.get('/', function (req, res) {
-  res.json({
-    message: 'Hello World!',
-    author: 'Finnian Anderson',
-    url: 'finnian.io',
-    hostname: hostname
-  })
   requests.push(Date.now())
-  updateStats()
+  updateStats(function(count) {
+    res.json({
+      message: 'Hello World!',
+      author: 'Finnian Anderson',
+      url: 'finnian.io',
+      hostname: hostname,
+      reqs: count
+    })
+  })
 })
 
 app.listen(3000, function () {
