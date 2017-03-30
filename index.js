@@ -10,8 +10,8 @@ const redis = require('redis')
 const client = redis.createClient('redis://redis:6379')
 
 const hostname = os.hostname()
-let requests = []
 
+let requests = []
 const interval = 1 // seconds
 
 function updateStats(cb) {
@@ -24,11 +24,10 @@ function updateStats(cb) {
     else break
   }
 
-  client.set(hostname, cnt / interval, function(err, count) {
-    if (typeof cb !== 'undefined') {
-      cb(cnt / interval)
-    }
-  })
+  client.publish(hostname, cnt / interval)
+  if (typeof cb !== 'undefined') {
+    cb(cnt / interval)
+  }
 }
 
 app.get('/', function (req, res) {
