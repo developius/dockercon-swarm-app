@@ -41,6 +41,7 @@ app.get('/', function (req, res) {
       reqs: count
     })
   })
+  if (requests.length >= 1000000) requests.shift()
 })
 
 app.listen(3000, function () {
