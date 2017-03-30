@@ -1,9 +1,9 @@
 FROM node:latest
 
 WORKDIR /app
-COPY index.js .
 COPY package.json .
 RUN npm i
+COPY index.js .
 
 EXPOSE 3000
 CMD ["node", "index.js"]
