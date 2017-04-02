@@ -7,7 +7,7 @@ const express = require('express')
 const app = express()
 
 const redis = require('redis')
-const client = redis.createClient('redis://redis:6379')
+const client = redis.createClient('redis://redis:6379', { password: process.env.REDIS_PASSWD })
 
 const hostname = os.hostname()
 
