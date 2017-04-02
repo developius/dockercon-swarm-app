@@ -7,7 +7,3 @@ A simple [ExpressJS](https://expressjs.com/) app designed for load balancing on 
 `docker-compose up`
 
 _Note: you must have at least one worker and one manager in the swarm cluster because the worker apps are limited to only run on worker nodes. Redis will run on the manager_.
-
-## Building
-
-`docker-compose build`
